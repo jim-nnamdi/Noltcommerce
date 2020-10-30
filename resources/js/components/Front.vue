@@ -2,7 +2,9 @@
     <div class="container mt-5 mb-5" :class="{ loading: loading }">
         <div class="row">
             <div class="col-md-3">
-                <h1>Nolt Catalog</h1>
+                <h1 class="m-8 text-3xl text-gray-900 leading-tight">
+                    Nolt Catalog
+                </h1>
                 <form @submit.prevent="addCategory">
                     <div class="form-group">
                         <input
@@ -81,19 +83,33 @@
                         v-for="product in products"
                         :key="product.id"
                     >
-                        <div class="card">
+                        <div class="max-w-sm rounded overflow-hidden shadow-lg">
                             <img
-                                class="card-img"
+                                class="w-full"
                                 src="http://placehold.it/300x200"
+                                alt="Sunset in the mountains"
                             />
-                            <div class="card-body">
-                                <h3>
-                                    <a href="#">{{ product.name }}</a>
-                                </h3>
-                                <h3>${{ product.price }}</h3>
-                                <p class="mt-3">
+                            <div class="px-6 py-4">
+                                <div class="font-bold text-xl mb-2">
+                                    {{ product.name }}
+                                </div>
+                                <p class="text-gray-700 text-base">
                                     {{ product.description }}
                                 </p>
+                            </div>
+                            <div class="px-6 pt-4 pb-2">
+                                <span
+                                    class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+                                    >#photography</span
+                                >
+                                <span
+                                    class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+                                    >#travel</span
+                                >
+                                <span
+                                    class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+                                    >#winter</span
+                                >
                             </div>
                         </div>
                     </div>
