@@ -1915,7 +1915,206 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      categories: [],
+      category: {
+        id: "",
+        name: ""
+      },
+      category_id: "",
+      paginations: {},
+      edit: false,
+      products: [],
+      loading: true
+    };
+  },
+  created: function created() {
+    this.loadCategories();
+    this.loadProducts();
+  },
+  methods: {
+    loadCategories: function loadCategories(page_url) {
+      var _this = this;
+
+      var vm = this;
+      page_url = page_url || "/api/v1/categories";
+      axios.get(page_url).then(function (response) {
+        _this.categories = response.data.data;
+        vm.makeCategoryPagination(response.meta, response.links);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    makeCategoryPagination: function makeCategoryPagination(meta, links) {
+      var pagination = {
+        current_page: meta.current_page,
+        last_page: meta.last_page,
+        next_page_url: links.next,
+        prev_page_url: links.prev
+      };
+      this.paginations = pagination;
+    },
+    deleteCategory: function deleteCategory(id) {
+      var _this2 = this;
+
+      if (confirm("Are you sure you wanna delete ?")) {
+        axios["delete"]("/api/v1/categories/".concat(id)).then(function (response) {
+          _this2.category.name = "";
+          alert("Article deleted!");
+
+          _this2.loadCategories();
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      }
+    },
+    addCategory: function addCategory() {
+      var _this3 = this;
+
+      if (this.edit === false) {
+        // add category
+        axios.post("/api/v1/categories", {
+          name: this.category.name
+        }).then(function (response) {
+          _this3.category.name = "";
+          alert("Article Added");
+
+          _this3.loadCategories();
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      } else {
+        // update category
+        axios.put("/api/v1/categories", {
+          id: this.category.category_id,
+          name: this.category.name
+        }).then(function (response) {
+          _this3.category.name = "";
+          alert("category updated");
+
+          _this3.loadCategories();
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      }
+    },
+    editCategory: function editCategory(category) {
+      this.edit = true;
+      this.category.id = category.id;
+      this.category.category_id = category.id;
+      this.category.name = category.name;
+    },
+    loadProducts: function loadProducts() {
+      var _this4 = this;
+
+      axios.get("/api/v1/products").then(function (response) {
+        _this4.products = response.data.data;
+        _this4.loading = false;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -19567,18 +19766,224 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    { staticClass: "container mt-5 mb-5", class: { loading: _vm.loading } },
+    [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-3" }, [
+          _c("h1", [_vm._v("Nolt Catalog")]),
+          _vm._v(" "),
+          _c(
+            "form",
+            {
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.addCategory($event)
+                }
+              }
+            },
+            [
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.category.name,
+                      expression: "category.name"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", placeholder: "name" },
+                  domProps: { value: _vm.category.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.category, "name", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-light btn-block",
+                  attrs: { type: "submit" }
+                },
+                [_vm._v("\n                    Submit\n                ")]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("nav", { attrs: { "aria-label": "Page navigation example" } }, [
+            _c("ul", { staticClass: "pagination" }, [
+              _c(
+                "li",
+                {
+                  staticClass: "page-item",
+                  class: [{ disabled: !_vm.paginations.prev_page_url }]
+                },
+                [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "page-link",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          return _vm.loadCategories(
+                            _vm.paginations.prev_page_url
+                          )
+                        }
+                      }
+                    },
+                    [_vm._v("Previous")]
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("li", { staticClass: "page-item disabled" }, [
+                _c(
+                  "a",
+                  { staticClass: "page-link text-dark", attrs: { href: "#" } },
+                  [
+                    _vm._v(
+                      "Page " +
+                        _vm._s(_vm.paginations.current_page) +
+                        " of\n                            " +
+                        _vm._s(_vm.paginations.last_page)
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  staticClass: "page-item",
+                  class: [{ disabled: !_vm.paginations.next_page_url }]
+                },
+                [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "page-link",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          return _vm.loadCategories(
+                            _vm.paginations.next_page_url
+                          )
+                        }
+                      }
+                    },
+                    [_vm._v("Next")]
+                  )
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "list-group" },
+            _vm._l(_vm.categories, function(category) {
+              return _c(
+                "a",
+                { key: category.id, staticClass: "list-group-item" },
+                [
+                  _vm._v(_vm._s(category.name) + "\n                    "),
+                  _c("hr"),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-warning",
+                      on: {
+                        click: function($event) {
+                          return _vm.editCategory(category)
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Edit\n                    "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      on: {
+                        click: function($event) {
+                          return _vm.deleteCategory(category.id)
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Delete\n                    "
+                      )
+                    ]
+                  )
+                ]
+              )
+            }),
+            0
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-9" }, [
+          _c(
+            "div",
+            { staticClass: "row mt-4" },
+            _vm._l(_vm.products, function(product) {
+              return _c(
+                "div",
+                { key: product.id, staticClass: "col-md-4 mb-4" },
+                [
+                  _c("div", { staticClass: "card" }, [
+                    _c("img", {
+                      staticClass: "card-img",
+                      attrs: { src: "http://placehold.it/300x200" }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card-body" }, [
+                      _c("h3", [
+                        _c("a", { attrs: { href: "#" } }, [
+                          _vm._v(_vm._s(product.name))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("h3", [_vm._v("$" + _vm._s(product.price))]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "mt-3" }, [
+                        _vm._v(
+                          "\n                                " +
+                            _vm._s(product.description) +
+                            "\n                            "
+                        )
+                      ])
+                    ])
+                  ])
+                ]
+              )
+            }),
+            0
+          )
+        ])
+      ])
+    ]
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container mt-5 mb-5" }, [
-      _c("div", { staticClass: "row" }, [_c("h1", [_vm._v("Noltcommerce")])])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
