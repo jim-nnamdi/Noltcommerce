@@ -2012,6 +2012,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -19772,7 +19788,11 @@ var render = function() {
     [
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-md-3" }, [
-          _c("h1", [_vm._v("Nolt Catalog")]),
+          _c(
+            "h1",
+            { staticClass: "m-8 text-3xl text-gray-900 leading-tight" },
+            [_vm._v("\n                Nolt Catalog\n            ")]
+          ),
           _vm._v(" "),
           _c(
             "form",
@@ -19949,30 +19969,41 @@ var render = function() {
                 "div",
                 { key: product.id, staticClass: "col-md-4 mb-4" },
                 [
-                  _c("div", { staticClass: "card" }, [
-                    _c("img", {
-                      staticClass: "card-img",
-                      attrs: { src: "http://placehold.it/300x200" }
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "card-body" }, [
-                      _c("h3", [
-                        _c("a", { attrs: { href: "#" } }, [
-                          _vm._v(_vm._s(product.name))
+                  _c(
+                    "div",
+                    {
+                      staticClass: "max-w-sm rounded overflow-hidden shadow-lg"
+                    },
+                    [
+                      _c("img", {
+                        staticClass: "w-full",
+                        attrs: {
+                          src: "http://placehold.it/300x200",
+                          alt: "Sunset in the mountains"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "px-6 py-4" }, [
+                        _c("div", { staticClass: "font-bold text-xl mb-2" }, [
+                          _vm._v(
+                            "\n                                " +
+                              _vm._s(product.name) +
+                              "\n                            "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "text-gray-700 text-base" }, [
+                          _vm._v(
+                            "\n                                " +
+                              _vm._s(product.description) +
+                              "\n                            "
+                          )
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("h3", [_vm._v("$" + _vm._s(product.price))]),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "mt-3" }, [
-                        _vm._v(
-                          "\n                                " +
-                            _vm._s(product.description) +
-                            "\n                            "
-                        )
-                      ])
-                    ])
-                  ])
+                      _vm._m(0, true)
+                    ]
+                  )
                 ]
               )
             }),
@@ -19983,7 +20014,41 @@ var render = function() {
     ]
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "px-6 pt-4 pb-2" }, [
+      _c(
+        "span",
+        {
+          staticClass:
+            "inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+        },
+        [_vm._v("#photography")]
+      ),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass:
+            "inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+        },
+        [_vm._v("#travel")]
+      ),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass:
+            "inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+        },
+        [_vm._v("#winter")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
