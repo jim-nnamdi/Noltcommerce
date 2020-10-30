@@ -76,7 +76,7 @@
                     </a>
                 </div>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-9 mb-5">
                 <div class="flex mb-4">
                     <div
                         class="w-1/3 h-12"
@@ -100,15 +100,7 @@
                             <div class="px-6 pt-4 pb-2">
                                 <span
                                     class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
-                                    >#photography</span
-                                >
-                                <span
-                                    class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
-                                    >#travel</span
-                                >
-                                <span
-                                    class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
-                                    >#winter</span
+                                    >{{ product.created_at }}</span
                                 >
                             </div>
                         </div>
