@@ -77,11 +77,11 @@
                 </div>
             </div>
             <div class="col-md-9">
-                <div class="row mt-4">
+                <div class="flex mb-4">
                     <div
-                        class="col-md-4 mb-4"
+                        class="w-1/3 h-12"
                         v-for="product in products"
-                        :key="product.id"
+                        v-bind:key="product.id"
                     >
                         <div class="max-w-sm rounded overflow-hidden shadow-lg">
                             <img

@@ -19963,49 +19963,43 @@ var render = function() {
         _c("div", { staticClass: "col-md-9" }, [
           _c(
             "div",
-            { staticClass: "row mt-4" },
+            { staticClass: "flex mb-4" },
             _vm._l(_vm.products, function(product) {
-              return _c(
-                "div",
-                { key: product.id, staticClass: "col-md-4 mb-4" },
-                [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "max-w-sm rounded overflow-hidden shadow-lg"
-                    },
-                    [
-                      _c("img", {
-                        staticClass: "w-full",
-                        attrs: {
-                          src: "http://placehold.it/300x200",
-                          alt: "Sunset in the mountains"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "px-6 py-4" }, [
-                        _c("div", { staticClass: "font-bold text-xl mb-2" }, [
-                          _vm._v(
-                            "\n                                " +
-                              _vm._s(product.name) +
-                              "\n                            "
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "text-gray-700 text-base" }, [
-                          _vm._v(
-                            "\n                                " +
-                              _vm._s(product.description) +
-                              "\n                            "
-                          )
-                        ])
+              return _c("div", { key: product.id, staticClass: "w-1/3 h-12" }, [
+                _c(
+                  "div",
+                  { staticClass: "max-w-sm rounded overflow-hidden shadow-lg" },
+                  [
+                    _c("img", {
+                      staticClass: "w-full",
+                      attrs: {
+                        src: "http://placehold.it/300x200",
+                        alt: "Sunset in the mountains"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "px-6 py-4" }, [
+                      _c("div", { staticClass: "font-bold text-xl mb-2" }, [
+                        _vm._v(
+                          "\n                                " +
+                            _vm._s(product.name) +
+                            "\n                            "
+                        )
                       ]),
                       _vm._v(" "),
-                      _vm._m(0, true)
-                    ]
-                  )
-                ]
-              )
+                      _c("p", { staticClass: "text-gray-700 text-base" }, [
+                        _vm._v(
+                          "\n                                " +
+                            _vm._s(product.description) +
+                            "\n                            "
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(0, true)
+                  ]
+                )
+              ])
             }),
             0
           )
