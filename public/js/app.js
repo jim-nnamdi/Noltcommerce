@@ -2097,10 +2097,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      showMenu: false
+      showMenu: false,
+      logo: "/images/noltlogo.png"
     };
   },
   methods: {
@@ -19805,9 +19808,16 @@ var render = function() {
                               "flex items-center justify-between w-full md:w-auto"
                           },
                           [
-                            _c("a", {
-                              attrs: { href: "#", "aria-label": "Home" }
-                            }),
+                            _c(
+                              "a",
+                              { attrs: { href: "#", "aria-label": "Home" } },
+                              [
+                                _c("img", {
+                                  staticClass: "h-8 w-auto sm:h-10",
+                                  attrs: { src: _vm.logo, alt: "Logo" }
+                                })
+                              ]
+                            ),
                             _vm._v(" "),
                             _c(
                               "div",
@@ -19955,7 +19965,7 @@ var staticRenderFns = [
             "h3",
             {
               staticClass:
-                "text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl"
+                "text-3xl tracking-tight leading-10 font-bold text-gray-900 sm:text-5xl sm:leading-none md:text-5xl"
             },
             [
               _vm._v(
@@ -19973,11 +19983,11 @@ var staticRenderFns = [
             "p",
             {
               staticClass:
-                "mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0"
+                "text-justify mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0"
             },
             [
               _vm._v(
-                "\n                                Anim aute id magna aliqua ad ad non deserunt\n                                sunt. Qui irure qui lorem cupidatat commodo.\n                                Elit sunt amet fugiat veniam occaecat fugiat\n                                aliqua.\n                            "
+                "\n                                Noltcommerce is a laravel package and tool which\n                                enables developers to automatically setup\n                                ecommerce systems and it comes scaffolded with\n                                payment systems and integrations and core\n                                adminstrative and user dashboards. Built with\n                                laravel & vueJS and Tailwindcss.\n                            "
               )
             ]
           ),
@@ -20039,7 +20049,7 @@ var staticRenderFns = [
             "h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full",
           attrs: {
             src:
-              "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80",
+              "https://images.pexels.com/photos/1569076/pexels-photo-1569076.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
             alt: ""
           }
         })

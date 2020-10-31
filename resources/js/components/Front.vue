@@ -29,11 +29,11 @@
                                     class="flex items-center justify-between w-full md:w-auto"
                                 >
                                     <a href="#" aria-label="Home">
-                                        <!-- <img
+                                        <img
                                             class="h-8 w-auto sm:h-10"
-                                            src="https://tailwindui.com/img/logos/workflow-mark-on-white.svg"
+                                            :src="logo"
                                             alt="Logo"
-                                        /> -->
+                                        />
                                     </a>
                                     <div
                                         class="-mr-2 flex items-center md:hidden"
@@ -109,19 +109,21 @@
                     >
                         <div class="sm:text-center lg:text-left">
                             <h3
-                                class="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl"
+                                class="text-3xl tracking-tight leading-10 font-bold text-gray-900 sm:text-5xl sm:leading-none md:text-5xl"
                             >
                                 Nolt Laravel
                                 <br class="xl:hidden" />
                                 <span class="text-teal-500"> Ecommerce</span>
                             </h3>
                             <p
-                                class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0"
+                                class="text-justify mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0"
                             >
-                                Anim aute id magna aliqua ad ad non deserunt
-                                sunt. Qui irure qui lorem cupidatat commodo.
-                                Elit sunt amet fugiat veniam occaecat fugiat
-                                aliqua.
+                                Noltcommerce is a laravel package and tool which
+                                enables developers to automatically setup
+                                ecommerce systems and it comes scaffolded with
+                                payment systems and integrations and core
+                                adminstrative and user dashboards. Built with
+                                laravel & vueJS and Tailwindcss.
                             </p>
                             <div
                                 class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start"
@@ -150,7 +152,7 @@
             <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
                 <img
                     class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
-                    src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
+                    src="https://images.pexels.com/photos/1569076/pexels-photo-1569076.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
                     alt=""
                 />
             </div>
@@ -192,6 +194,7 @@ export default {
     data: function () {
         return {
             showMenu: false,
+            logo: "/images/noltlogo.png",
         };
     },
     methods: {
