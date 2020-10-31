@@ -1,119 +1,190 @@
 <template>
-    <div class="container mt-5 mb-5" :class="{ loading: loading }">
-        <div class="row">
-            <div class="col-md-3">
-                <h1 class="m-8 text-3xl text-gray-900 leading-tight">
-                    Nolt Catalog
-                </h1>
-                <form @submit.prevent="addCategory">
-                    <div class="form-group">
-                        <input
-                            class="form-control"
-                            v-model="category.name"
-                            type="text"
-                            placeholder="name"
-                        />
-                    </div>
-                    <button type="submit" class="btn btn-light btn-block">
-                        Submit
-                    </button>
-                </form>
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <li
-                            :class="[{ disabled: !paginations.prev_page_url }]"
-                            class="page-item"
-                        >
-                            <a
-                                class="page-link"
-                                @click="
-                                    loadCategories(paginations.prev_page_url)
-                                "
-                                href="#"
-                                >Previous</a
-                            >
-                        </li>
-                        <li class="page-item disabled">
-                            <a class="page-link text-dark" href="#"
-                                >Page {{ paginations.current_page }} of
-                                {{ paginations.last_page }}</a
-                            >
-                        </li>
-                        <li
-                            class="page-item"
-                            :class="[{ disabled: !paginations.next_page_url }]"
-                        >
-                            <a
-                                class="page-link"
-                                @click="
-                                    loadCategories(paginations.next_page_url)
-                                "
-                                href="#"
-                                >Next</a
-                            >
-                        </li>
-                    </ul>
-                </nav>
-                <div class="list-group">
-                    <a
-                        class="list-group-item"
-                        v-for="category in categories"
-                        :key="category.id"
-                        >{{ category.name }}
-                        <hr />
-                        <button
-                            class="btn btn-warning"
-                            @click="editCategory(category)"
-                        >
-                            Edit
-                        </button>
-                        <button
-                            class="btn btn-danger"
-                            @click="deleteCategory(category.id)"
-                        >
-                            Delete
-                        </button>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-9">
-                <div class="row mt-4">
-                    <div
-                        class="col-md-4 mb-4"
-                        v-for="product in products"
-                        :key="product.id"
+    <!--
+  Tailwind UI components require Tailwind CSS v1.8 and the @tailwindcss/ui plugin.
+  Read the documentation to get started: https://tailwindui.com/documentation
+-->
+    <div>
+        <div class="relative bg-gray-100 overflow-hidden">
+            <div class="max-w-screen-xl mx-auto">
+                <div
+                    class="relative z-10 pb-8 bg-gray-100 sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32"
+                >
+                    <svg
+                        class="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/2"
+                        fill="currentColor"
+                        viewBox="0 0 100 100"
+                        preserveAspectRatio="none"
                     >
-                        <div class="max-w-sm rounded overflow-hidden shadow-lg">
-                            <img
-                                class="w-full"
-                                src="http://placehold.it/300x200"
-                                alt="Sunset in the mountains"
-                            />
-                            <div class="px-6 py-4">
-                                <div class="font-bold text-xl mb-2">
-                                    {{ product.name }}
+                        <!-- <polygon points="50,0 100,0 50,100 0,100" /> -->
+                    </svg>
+
+                    <div class="relative pt-6 pb-5 px-4 sm:px-6 lg:px-8">
+                        <nav
+                            class="relative flex items-center justify-between sm:h-10 lg:justify-start"
+                        >
+                            <div
+                                class="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0"
+                            >
+                                <div
+                                    class="flex items-center justify-between w-full md:w-auto"
+                                >
+                                    <a href="#" aria-label="Home">
+                                        <img
+                                            class="h-8 w-auto sm:h-10"
+                                            :src="logo"
+                                            alt="Logo"
+                                        />
+                                    </a>
+                                    <div
+                                        class="-mr-2 flex items-center md:hidden"
+                                    >
+                                        <button
+                                            type="button"
+                                            class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
+                                            id="main-menu"
+                                            aria-label="Main menu"
+                                            aria-haspopup="true"
+                                        >
+                                            <svg
+                                                class="h-6 w-6"
+                                                @click="toggleNavbar()"
+                                                stroke="currentColor"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M4 6h16M4 12h16M4 18h16"
+                                                />
+                                            </svg>
+                                        </button>
+                                    </div>
                                 </div>
-                                <p class="text-gray-700 text-base">
-                                    {{ product.description }}
-                                </p>
                             </div>
-                            <div class="px-6 pt-4 pb-2">
-                                <span
-                                    class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
-                                    >#photography</span
+                            <div class="hidden md:block md:ml-10 md:pr-4">
+                                <a
+                                    href="#"
+                                    class="font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out"
+                                    >Product</a
                                 >
-                                <span
-                                    class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
-                                    >#travel</span
+                                <a
+                                    href="#"
+                                    class="ml-8 font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out"
+                                    >Features</a
                                 >
-                                <span
-                                    class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
-                                    >#winter</span
+                                <a
+                                    href="#"
+                                    class="ml-8 font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out"
+                                    >Marketplace</a
                                 >
+                                <a
+                                    href="#"
+                                    class="ml-8 font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out"
+                                    >Company</a
+                                >
+                                <a
+                                    href="#"
+                                    class="ml-8 font-medium text-teal-500 hover:text-teal-900 transition duration-150 ease-in-out"
+                                    >Log in</a
+                                >
+                            </div>
+                        </nav>
+                    </div>
+
+                    <!--
+        Mobile menu, show/hide based on menu open state.
+
+        Entering: "duration-150 ease-out"
+          From: "opacity-0 scale-95"
+          To: "opacity-100 scale-100"
+        Leaving: "duration-100 ease-in"
+          From: "opacity-100 scale-100"
+          To: "opacity-0 scale-95"
+      -->
+                    <div></div>
+                    <main
+                        class="mt-10 mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28"
+                    >
+                        <div class="sm:text-center lg:text-left">
+                            <h3
+                                class="text-3xl tracking-tight leading-10 font-bold text-gray-900 sm:text-5xl sm:leading-none md:text-5xl"
+                            >
+                                Nolt Laravel
+                                <br class="xl:hidden" />
+                                <span class="text-teal-500"> Ecommerce</span>
+                            </h3>
+                            <p
+                                class="text-justify mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0"
+                            >
+                                Noltcommerce is a laravel package and tool which
+                                enables developers to automatically setup
+                                ecommerce systems and it comes scaffolded with
+                                payment systems and integrations and core
+                                adminstrative and user dashboards. Built with
+                                laravel & vueJS and Tailwindcss.
+                            </p>
+                            <div
+                                class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start"
+                            >
+                                <div class="rounded-md shadow">
+                                    <a
+                                        href="#"
+                                        class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-teal-500 hover:bg-teal-500 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10"
+                                    >
+                                        Get started
+                                    </a>
+                                </div>
+                                <div class="mt-3 sm:mt-0 sm:ml-3">
+                                    <a
+                                        href="#"
+                                        class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-teal-700 bg-teal-100 hover:text-teal-500 hover:bg-teal-50 focus:outline-none focus:shadow-outline-teal focus:border-teal-500 transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10"
+                                    >
+                                        Live demo
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </main>
                 </div>
+            </div>
+            <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+                <img
+                    class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
+                    src="https://images.pexels.com/photos/1569076/pexels-photo-1569076.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                    alt=""
+                />
+            </div>
+        </div>
+
+        <!--
+    Mobile menu, toggle classes based on menu state.
+
+    Menu open: "block", Menu closed: "hidden"
+  -->
+        <div class="hidden sm:hidden">
+            <div class="px-2 pt-2 pb-3">
+                <a
+                    href="#"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
+                    >Dashboard</a
+                >
+                <a
+                    href="#"
+                    class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
+                    >Team</a
+                >
+                <a
+                    href="#"
+                    class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
+                    >Projects</a
+                >
+                <a
+                    href="#"
+                    class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
+                    >Calendar</a
+                >
             </div>
         </div>
     </div>
@@ -122,107 +193,13 @@
 export default {
     data: function () {
         return {
-            categories: [],
-            category: {
-                id: "",
-                name: "",
-            },
-            category_id: "",
-            paginations: {},
-            edit: false,
-            products: [],
-            loading: true,
+            showMenu: false,
+            logo: "/images/noltlogo.png",
         };
     },
-    created() {
-        this.loadCategories();
-        this.loadProducts();
-    },
     methods: {
-        loadCategories: function (page_url) {
-            let vm = this;
-            page_url = page_url || "/api/v1/categories";
-            axios
-                .get(page_url)
-                .then((response) => {
-                    this.categories = response.data.data;
-                    vm.makeCategoryPagination(response.meta, response.links);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-        },
-        makeCategoryPagination: function (meta, links) {
-            let pagination = {
-                current_page: meta.current_page,
-                last_page: meta.last_page,
-                next_page_url: links.next,
-                prev_page_url: links.prev,
-            };
-            this.paginations = pagination;
-        },
-        deleteCategory: function (id) {
-            if (confirm("Are you sure you wanna delete ?")) {
-                axios
-                    .delete(`/api/v1/categories/${id}`)
-                    .then((response) => {
-                        this.category.name = "";
-                        alert("Article deleted!");
-                        this.loadCategories();
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
-            }
-        },
-        addCategory: function () {
-            if (this.edit === false) {
-                // add category
-                axios
-                    .post("/api/v1/categories", {
-                        name: this.category.name,
-                    })
-                    .then((response) => {
-                        this.category.name = "";
-                        alert("Article Added");
-                        this.loadCategories();
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
-            } else {
-                // update category
-                axios
-                    .put("/api/v1/categories", {
-                        id: this.category.category_id,
-                        name: this.category.name,
-                    })
-                    .then((response) => {
-                        this.category.name = "";
-                        alert("category updated");
-                        this.loadCategories();
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
-            }
-        },
-        editCategory: function (category) {
-            this.edit = true;
-            this.category.id = category.id;
-            this.category.category_id = category.id;
-            this.category.name = category.name;
-        },
-        loadProducts: function () {
-            axios
-                .get("/api/v1/products")
-                .then((response) => {
-                    this.products = response.data.data;
-                    this.loading = false;
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+        toggleNavbar: function () {
+            this.showMenu = !this.showMenu;
         },
     },
 };
