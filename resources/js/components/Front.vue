@@ -204,7 +204,11 @@
                         class="flex-1 px-10 py-12 bg-gray rounded-lg shadow-lg"
                     >
                         <!-- Card contents -->
-                        <h4>{{ product.name }}</h4>
+                        <h4 class="text-4xl">
+                            <b>{{ product.name }}</b>
+                        </h4>
+                        <hr />
+                        <br />
                         <p class="text-justify">{{ product.description }}</p>
                     </div>
                 </div>

@@ -2122,6 +2122,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -19949,7 +19953,13 @@ var render = function() {
                   staticClass: "flex-1 px-10 py-12 bg-gray rounded-lg shadow-lg"
                 },
                 [
-                  _c("h4", [_vm._v(_vm._s(product.name))]),
+                  _c("h4", { staticClass: "text-4xl" }, [
+                    _c("b", [_vm._v(_vm._s(product.name))])
+                  ]),
+                  _vm._v(" "),
+                  _c("hr"),
+                  _vm._v(" "),
+                  _c("br"),
                   _vm._v(" "),
                   _c("p", { staticClass: "text-justify" }, [
                     _vm._v(_vm._s(product.description))
