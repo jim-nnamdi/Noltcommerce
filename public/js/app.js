@@ -2102,11 +2102,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      products: [],
+      errors: [],
       showMenu: false,
       logo: "/images/noltlogo.png"
     };
   },
+  created: function created() {
+    this.loadProducts();
+  },
   methods: {
+    loadProducts: function loadProducts() {
+      var _this = this;
+
+      axios.get("/api/v1/products").then(function (response) {
+        _this.products = response.data.data;
+      })["catch"](function (errors) {
+        _this.errors = console.log(errors);
+      });
+    },
     toggleNavbar: function toggleNavbar() {
       this.showMenu = !this.showMenu;
     }

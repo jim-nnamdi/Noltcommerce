@@ -193,11 +193,26 @@
 export default {
     data: function () {
         return {
+            products: [],
+            errors: [],
             showMenu: false,
             logo: "/images/noltlogo.png",
         };
     },
+    created() {
+        this.loadProducts();
+    },
     methods: {
+        loadProducts: function () {
+            axios
+                .get("/api/v1/products")
+                .then((response) => {
+                    this.products = response.data.data;
+                })
+                .catch((errors) => {
+                    this.errors = console.log(errors);
+                });
+        },
         toggleNavbar: function () {
             this.showMenu = !this.showMenu;
         },
