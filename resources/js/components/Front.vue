@@ -187,17 +187,58 @@
                 >
             </div>
         </div>
+
+        <!-- start product grid here --><!-- Container -->
+        <br /><br />
+        <div class="max-w-screen-xl mx-auto px-4">
+            <!-- Grid wrapper -->
+            <div class="-mx-4 flex flex-wrap">
+                <!-- Grid column -->
+                <div
+                    class="w-full flex flex-col p-4 sm:w-1/2 lg:w-1/3"
+                    v-for="product in products"
+                    v-bind:key="product.id"
+                >
+                    <!-- Column contents -->
+                    <img
+                        src="https://images.pexels.com/photos/1569076/pexels-photo-1569076.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                    />
+                    <div
+                        class="flex-1 px-10 py-12 bg-gray rounded-lg shadow-lg"
+                    >
+                        <!-- Card contents -->
+                        <h4>{{ product.name }}</h4>
+                        <p class="text-justify">{{ product.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
 export default {
     data: function () {
         return {
+            products: [],
+            errors: [],
             showMenu: false,
             logo: "/images/noltlogo.png",
         };
     },
+    created() {
+        this.loadProducts();
+    },
     methods: {
+        loadProducts: function () {
+            axios
+                .get("/api/v1/products")
+                .then((response) => {
+                    this.products = response.data.data;
+                })
+                .catch((errors) => {
+                    this.errors = console.log(errors);
+                });
+        },
         toggleNavbar: function () {
             this.showMenu = !this.showMenu;
         },
