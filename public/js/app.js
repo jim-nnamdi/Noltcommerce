@@ -2122,9 +2122,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -19946,13 +19943,6 @@ var render = function() {
               staticClass: "w-full flex flex-col p-4 sm:w-1/2 lg:w-1/3"
             },
             [
-              _c("img", {
-                attrs: {
-                  src:
-                    "https://images.pexels.com/photos/1569076/pexels-photo-1569076.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                }
-              }),
-              _vm._v(" "),
               _c(
                 "div",
                 {

@@ -200,9 +200,6 @@
                     v-bind:key="product.id"
                 >
                     <!-- Column contents -->
-                    <img
-                        src="https://images.pexels.com/photos/1569076/pexels-photo-1569076.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                    />
                     <div
                         class="flex-1 px-10 py-12 bg-gray rounded-lg shadow-lg"
                     >
