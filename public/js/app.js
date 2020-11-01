@@ -2099,6 +2099,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -19903,7 +19929,49 @@ var render = function() {
       _vm._m(2)
     ]),
     _vm._v(" "),
-    _vm._m(3)
+    _vm._m(3),
+    _vm._v(" "),
+    _c("br"),
+    _c("br"),
+    _vm._v(" "),
+    _c("div", { staticClass: "max-w-screen-xl mx-auto px-4" }, [
+      _c(
+        "div",
+        { staticClass: "-mx-4 flex flex-wrap" },
+        _vm._l(_vm.products, function(product) {
+          return _c(
+            "div",
+            {
+              key: product.id,
+              staticClass: "w-full flex flex-col p-4 sm:w-1/2 lg:w-1/3"
+            },
+            [
+              _c("img", {
+                attrs: {
+                  src:
+                    "https://images.pexels.com/photos/1569076/pexels-photo-1569076.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "flex-1 px-10 py-12 bg-gray rounded-lg shadow-lg"
+                },
+                [
+                  _c("h4", [_vm._v(_vm._s(product.name))]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-justify" }, [
+                    _vm._v(_vm._s(product.description))
+                  ])
+                ]
+              )
+            ]
+          )
+        }),
+        0
+      )
+    ])
   ])
 }
 var staticRenderFns = [
